@@ -1,12 +1,25 @@
-# Rosamar Es Blau · Web premium
+# Rosamar Es Blau · Un día en Es Blau
 
 Web inmersiva para el **Hotel Rosamar Es Blau Adults Only +21** (Lloret de Mar, Costa Brava).
-Concepto visual basado en el Reel de referencia: **un recorrido cinematográfico continuo controlado por el scroll**
-(de la entrada del hotel al interior, parada a parada, y de vuelta fuera sobre la piscina), tipografía sans muy fina
-y espaciada, luz cálida de atardecer, paradas numeradas con frase corta y botones píldora. Desarrollo: **DURDUC**.
+Toda la web es **un único recorrido cinematográfico ligado al scroll**, inspirado en el Reel de referencia:
+las fotografías son las protagonistas y el texto se reduce a una palabra por capítulo, una frase y los datos útiles.
+Dirección creativa, diseño y desarrollo: **DURDUC**.
 
 - Web publicada: https://durducco-source.github.io/rosamar-esblau-premium/
 - Código: https://github.com/durducco-source/rosamar-esblau-premium
+
+## El recorrido (8 escenas, cada una con su movimiento de cámara)
+
+| Escena | Movimiento |
+|---|---|
+| Llegada | Avance hacia la fachada; "ES BLAU" se abre y se desenfoca; fundido al vestíbulo, "Pasa dentro" |
+| 01 Agua | Picado de dron sobre la piscina (zoom + giro), barrido lateral y retroceso |
+| 02 Calma | El spa se abre como una puerta corredera; travelling horizontal por sus espacios |
+| 03 Descanso | La cámara empieza pegada a la cama y retrocede; deriva lateral |
+| 04 Mesa | Capas de profundidad: fondo lento y fotos que suben a distinta velocidad |
+| 05 Luz | Panorámica vertical hacia el cielo del solárium; avance hacia la terraza |
+| 06 Fragmentos | Tira de película horizontal, fotos ampliables a pantalla completa |
+| Reservar | La cámara se aleja; reserva, cómo llegar y llamar |
 
 ## Tecnologías
 
@@ -32,32 +45,26 @@ npm run deploy     # compila y publica en GitHub Pages (rama gh-pages)
 
 ```
 src/
-├── app/                 → layout (SEO, tipografías, JSON-LD), página y estilos (tema en :root)
+├── app/                → layout (SEO, tipografía, JSON-LD), página y estilos (tema y etalonaje en globals.css)
 ├── components/
-│   ├── Header.tsx       → cabecera, menú a pantalla completa animado y barra de reserva móvil
-│   ├── Journey.tsx      → 01 Home: recorrido por el hotel ligado al scroll (zoom de cámara + fundidos + paradas)
-│   ├── Sections.tsx     → 02 Experiencia, cinta en movimiento, 05 Ubicación, 06 Reservas, pie
-│   ├── Facilities.tsx   → 03 Instalaciones (índice con vista previa) y habitaciones
-│   ├── Gallery.tsx      → 04 Galería tipo revista con visor
-│   └── motion.tsx       → primitivas de animación reutilizables (Reveal, SplitHeading, ImageReveal, ScrollWords)
-├── content/site.ts      → TODO el contenido (textos, fotos, enlaces) ← editar aquí
-└── lib/utils.tsx        → utilidades
-public/media/            → fotografías oficiales
+│   ├── cinema.tsx      → primitivas: Scene (plató fijo), Still (foto con cámara), ChapterWord, Caption, useRange
+│   ├── Scenes.tsx      → escenas Llegada, Agua, Calma, Descanso, Mesa, Luz, Reservar y pie
+│   ├── FilmStrip.tsx   → 06 Fragmentos (tira horizontal + visor)
+│   ├── Header.tsx      → barra fina, menú a pantalla completa y barra de reserva móvil
+│   └── Hud.tsx         → indicador del capítulo y progreso
+├── content/site.ts     → TODO el contenido (textos, fotos, enlaces) ← editar aquí
+└── lib/utils.tsx       → utilidades (incluye fullRange para las animaciones de scroll)
+public/media/           → fotografías oficiales
 ```
 
-## Funcionalidades
+## Notas técnicas
 
-- Portada como recorrido: 7 planos a pantalla completa que avanzan con zoom de cámara y se funden al hacer scroll; título "ES BLAU" enorme y espaciado, "Pasa dentro", paradas 01–04 con botón píldora y cierre "A 100 metros del mar".
-- Menú minimalista a pantalla completa (secciones 01–06) con vista previa de foto al pasar el ratón; Escape para cerrar.
-- Barra de navegación fina con enlaces (escritorio) y menú a pantalla completa (móvil).
-- Manifiesto que se ilumina palabra a palabra con el scroll y titulares que suben desde una máscara.
-- Imágenes que se descubren con cortina (clip-path) y parallax sutil; composición editorial asimétrica.
-- Índice de instalaciones con vista previa fija (escritorio) y acordeón con foto (móvil).
-- Galería tipo revista con visor a pantalla completa (flechas, teclado, Escape, foco accesible).
-- Ubicación con mapa y botones a Google Maps; reservas con enlace a la web oficial, teléfono y canales oficiales.
-- Barra de reserva fija en móvil, SEO (metadatos, Open Graph, schema.org Hotel), accesible y respetuosa con `prefers-reduced-motion`.
+- Las animaciones de scroll usan `useScroll`/`useTransform` de Motion, aceleradas por el navegador (ScrollTimeline).
+  Todos los rangos se completan de 0 a 1 con `fullRange`; si no, el navegador rellena los extremos y los textos "reaparecen".
+- La primera foto de cada escena se descarga pronto con prioridad baja para que nunca aparezca un fotograma en negro.
+- Responsive con unidades `svh`/`vw`; barra de reserva fija en móvil; accesible (menú y visor con teclado, foco y Escape).
 
 ## Fuentes del contenido
 
-- Web oficial **rosamarhotels.com**: textos, servicios, habitaciones, opiniones (9,3 · 1.342 encuestas) y fotografías.
-- No se ha inventado información. El hotel no dispone de un vídeo de recorrido: el efecto de "vuelo" se recrea con sus fotografías oficiales.
+- Web oficial **rosamarhotels.com**: textos, servicios, habitaciones, opiniones y fotografías. No se ha inventado información.
+- El hotel no dispone de un vídeo de recorrido: el efecto de cámara se recrea con sus fotografías oficiales.

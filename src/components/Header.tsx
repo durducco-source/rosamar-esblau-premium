@@ -52,8 +52,8 @@ export default function Header() {
       >
         <div className="wrap flex h-16 items-center justify-between gap-6">
           <a
-            href="#inicio"
-            onClick={(e) => { if (open) { e.preventDefault(); setOpen(false); goTo("#inicio"); } }}
+            href="#llegada"
+            onClick={(e) => { if (open) { e.preventDefault(); setOpen(false); goTo("#llegada"); } }}
             className="group flex flex-col leading-none"
             aria-label="Rosamar Es Blau, ir al inicio"
           >
@@ -63,8 +63,8 @@ export default function Header() {
 
           <nav aria-label="Secciones" className="hidden lg:block">
             <ul className="flex items-center gap-8">
-              {site.nav.slice(1).map((item) => (
-                <li key={item.href}><a href={item.href} className="kicker ulink text-fg/80 transition-colors hover:text-fg">{item.label}</a></li>
+              {site.chapters.slice(1, -1).map((item) => (
+                <li key={item.id}><a href={`#${item.id}`} className="kicker ulink text-fg/80 transition-colors hover:text-fg">{item.label}</a></li>
               ))}
             </ul>
           </nav>
@@ -105,11 +105,11 @@ export default function Header() {
           >
             <div className="wrap grid min-h-full gap-10 pb-10 pt-28 lg:grid-cols-[1.2fr_1fr] lg:items-center">
               <ul className="flex flex-col">
-                {site.nav.map((item, i) => (
-                  <li key={item.href} className="overflow-hidden border-b border-fg/10">
+                {site.chapters.map((item, i) => (
+                  <li key={item.id} className="overflow-hidden border-b border-fg/10">
                     <motion.a
-                      href={item.href}
-                      onClick={(e) => { e.preventDefault(); setOpen(false); goTo(item.href); }}
+                      href={`#${item.id}`}
+                      onClick={(e) => { e.preventDefault(); setOpen(false); goTo(`#${item.id}`); }}
                       onMouseEnter={() => setHover(i)}
                       onFocus={() => setHover(i)}
                       className="group flex items-baseline gap-5 py-3 sm:py-4"
@@ -131,7 +131,7 @@ export default function Header() {
                   <AnimatePresence initial={false}>
                     <motion.img
                       key={hover}
-                      src={asset(site.nav[hover].image)}
+                      src={asset(site.chapters[hover].image)}
                       alt=""
                       className="absolute inset-0 h-full w-full object-cover"
                       initial={{ opacity: 0, scale: 1.12 }}
@@ -147,7 +147,7 @@ export default function Header() {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.8, duration: 0.8 }}
                 >
-                  <p>{site.location.address.join(", ")}</p>
+                  <p>{site.address}</p>
                   <div className="flex flex-col gap-2">
                     <a className="ulink self-start" href={site.links.phone}>{site.links.phoneLabel}</a>
                     <a className="ulink self-start" href={site.links.book} target="_blank" rel="noopener">Reservar en la web oficial</a>
