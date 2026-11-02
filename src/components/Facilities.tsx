@@ -21,7 +21,7 @@ export default function Facilities() {
             <SplitHeading text="Espacios para *no hacer nada.*" className="h2 mt-8 max-w-[14ch]" />
           </div>
           <Reveal delay={0.1}>
-            <p className="max-w-sm text-[15px] leading-relaxed text-ink/70">
+            <p className="max-w-sm text-[15px] leading-relaxed text-fg/70">
               120 habitaciones en 5 plantas, Vitality Spa, piscina al aire libre, solárium y Gym Centre en un hotel de nueva construcción.
             </p>
           </Reveal>
@@ -39,11 +39,11 @@ export default function Facilities() {
                   aria-expanded={active === i}
                   className="group grid w-full grid-cols-[40px_1fr_auto] items-baseline gap-2 py-6 text-left"
                 >
-                  <span className={`kicker transition-colors ${active === i ? "text-blau" : "text-ink/40"}`}>0{i + 1}</span>
-                  <span className={`serif text-[clamp(30px,3.4vw,54px)] transition-[transform,color] duration-500 ${active === i ? "translate-x-2 italic text-mar" : "text-ink/80 group-hover:translate-x-2"}`}>
+                  <span className={`kicker transition-colors ${active === i ? "text-accent" : "text-fg/40"}`}>0{i + 1}</span>
+                  <span className={`serif text-[clamp(30px,3.4vw,54px)] transition-[transform,color] duration-500 ${active === i ? "translate-x-2 italic text-fg" : "text-fg/80 group-hover:translate-x-2"}`}>
                     {f.name}
                   </span>
-                  <Icon name="plus" size={18} className={`transition-transform duration-500 ${active === i ? "rotate-45 text-blau" : "text-ink/40"}`} />
+                  <Icon name="plus" size={18} className={`transition-transform duration-500 ${active === i ? "rotate-45 text-accent" : "text-fg/40"}`} />
                 </button>
                 <AnimatePresence initial={false}>
                   {active === i && (
@@ -55,7 +55,7 @@ export default function Facilities() {
                       className="overflow-hidden"
                     >
                       <div className="pb-7 pl-[48px]">
-                        <p className="max-w-md text-[15px] leading-relaxed text-ink/70">{f.text}</p>
+                        <p className="max-w-md text-[15px] leading-relaxed text-fg/70">{f.text}</p>
                         <img src={asset(small(f.image.src))} alt={f.image.alt} loading="lazy" className="mt-5 aspect-[16/10] w-full object-cover lg:hidden" />
                       </div>
                     </motion.div>
@@ -67,7 +67,7 @@ export default function Facilities() {
 
           {/* Vista previa fija (escritorio) */}
           <div className="hidden lg:col-span-5 lg:col-start-8 lg:block">
-            <div className="sticky top-28 aspect-[4/5] overflow-hidden bg-arena">
+            <div className="sticky top-28 aspect-[4/5] overflow-hidden bg-bg2">
               <AnimatePresence initial={false}>
                 <motion.img
                   key={active}
@@ -80,16 +80,16 @@ export default function Facilities() {
                   transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
                 />
               </AnimatePresence>
-              <span className="kicker absolute bottom-5 left-5 z-10 bg-cal/90 px-3 py-2 text-ink">{items[active].name}</span>
+              <span className="kicker absolute bottom-5 left-5 z-10 bg-bg/80 px-3 py-2 text-fg">{items[active].name}</span>
             </div>
           </div>
         </div>
 
         {/* Habitaciones */}
-        <div className="mt-[clamp(90px,12vw,170px)]">
+        <div id="habitaciones" className="mt-[clamp(90px,12vw,170px)] scroll-mt-20">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <SplitHeading text="Descansar *en pareja.*" as="h3" className="h2" />
-            <Reveal><p className="max-w-sm text-sm leading-relaxed text-ink/60">Precios y disponibilidad según fechas en la web oficial.</p></Reveal>
+            <Reveal><p className="max-w-sm text-sm leading-relaxed text-fg/60">Precios y disponibilidad según fechas en la web oficial.</p></Reveal>
           </div>
           <div className="mt-12 grid gap-14 md:grid-cols-2 md:gap-8">
             {site.rooms.map((r, i) => (
@@ -101,20 +101,20 @@ export default function Facilities() {
                 </a>
                 <Reveal className="mt-7 flex items-baseline justify-between gap-4 border-b border-line pb-5">
                   <h4 className="serif text-[clamp(32px,3vw,46px)]">{r.name}</h4>
-                  <span className="kicker text-blau">{r.size}</span>
+                  <span className="kicker text-accent">{r.size}</span>
                 </Reveal>
                 <Reveal delay={0.1}>
-                  <ul className="mt-5 grid gap-2 text-[15px] text-ink/75 sm:grid-cols-2">
-                    {r.details.map((d) => <li key={d} className="flex gap-3"><span className="mt-[9px] h-px w-3 shrink-0 bg-laton" />{d}</li>)}
+                  <ul className="mt-5 grid gap-2 text-[15px] text-fg/75 sm:grid-cols-2">
+                    {r.details.map((d) => <li key={d} className="flex gap-3"><span className="mt-[9px] h-px w-3 shrink-0 bg-accent" />{d}</li>)}
                   </ul>
-                  <a href={site.links.book} target="_blank" rel="noopener" className="ulink kicker mt-7 inline-flex items-center gap-2 text-mar">
+                  <a href={site.links.book} target="_blank" rel="noopener" className="ulink kicker mt-7 inline-flex items-center gap-2 text-fg">
                     Ver disponibilidad <Icon name="arrow" />
                   </a>
                 </Reveal>
               </article>
             ))}
           </div>
-          <Reveal><p className="mt-16 max-w-3xl text-sm leading-relaxed text-ink/60">{site.roomsAll}</p></Reveal>
+          <Reveal><p className="mt-16 max-w-3xl text-sm leading-relaxed text-fg/60">{site.roomsAll}</p></Reveal>
         </div>
       </div>
     </section>

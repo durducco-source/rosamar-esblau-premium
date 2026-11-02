@@ -54,21 +54,21 @@ export default function Gallery() {
   }, [open]);
 
   return (
-    <section id="galeria" className="bg-cal pb-[clamp(100px,13vw,190px)] pt-[clamp(60px,8vw,120px)]">
+    <section id="galeria" className="bg-bg pb-[clamp(100px,13vw,190px)] pt-[clamp(60px,8vw,120px)]">
       <div className="wrap">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
             <SectionLabel n="04" label="Galería" />
             <SplitHeading text="Un paseo *por el hotel.*" className="h2 mt-8" />
           </div>
-          <Reveal><p className="kicker text-ink/50">{items.length} fotografías · pulsa para ampliar</p></Reveal>
+          <Reveal><p className="kicker text-fg/50">{items.length} fotografías · pulsa para ampliar</p></Reveal>
         </div>
 
         <ul className="mt-14 grid grid-cols-2 gap-3 md:auto-rows-[clamp(160px,15vw,230px)] md:grid-cols-12 md:gap-4">
           {items.map((img, i) => (
             <motion.li
               key={img.src}
-              className={`relative overflow-hidden bg-arena ${SPANS[i % SPANS.length]}`}
+              className={`relative overflow-hidden bg-bg2 ${SPANS[i % SPANS.length]}`}
               initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "0px 0px -8% 0px" }}
@@ -87,8 +87,8 @@ export default function Gallery() {
                   decoding="async"
                   className="h-full w-full object-cover transition-transform duration-[1.4s] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.06]"
                 />
-                <span className="absolute inset-0 bg-mar/0 transition-colors duration-700 group-hover:bg-mar/25" />
-                <span className="kicker absolute bottom-4 left-4 translate-y-3 text-[10px] text-cal opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+                <span className="absolute inset-0 bg-black/0 transition-colors duration-700 group-hover:bg-black/25" />
+                <span className="kicker absolute bottom-4 left-4 translate-y-3 text-[10px] text-fg opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
                   {img.alt}
                 </span>
               </button>
@@ -103,7 +103,7 @@ export default function Gallery() {
             role="dialog"
             aria-modal="true"
             aria-label={`Galería: ${items[open].alt}`}
-            className="fixed inset-0 z-[70] flex flex-col bg-[#061c2b]/95 text-cal backdrop-blur"
+            className="fixed inset-0 z-[70] flex flex-col bg-[#0a0908]/95 text-fg backdrop-blur"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -111,7 +111,7 @@ export default function Gallery() {
             onClick={close}
           >
             <div className="wrap flex h-[72px] shrink-0 items-center justify-between">
-              <span className="kicker text-cal/70">{String(open + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}</span>
+              <span className="kicker text-fg/70">{String(open + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}</span>
               <button ref={closeRef} type="button" onClick={close} className="kicker flex items-center gap-3 py-2">
                 Cerrar <Icon name="close" size={20} />
               </button>
@@ -129,14 +129,14 @@ export default function Gallery() {
                   transition={{ duration: 0.7, ease: EASE }}
                 />
               </AnimatePresence>
-              <button type="button" onClick={() => go(-1)} className="absolute left-2 top-1/2 -translate-y-1/2 p-3 transition-colors hover:text-laton sm:left-6" aria-label="Foto anterior">
+              <button type="button" onClick={() => go(-1)} className="absolute left-2 top-1/2 -translate-y-1/2 p-3 transition-colors hover:text-accent sm:left-6" aria-label="Foto anterior">
                 <Icon name="prev" size={30} />
               </button>
-              <button type="button" onClick={() => go(1)} className="absolute right-2 top-1/2 -translate-y-1/2 p-3 transition-colors hover:text-laton sm:right-6" aria-label="Foto siguiente">
+              <button type="button" onClick={() => go(1)} className="absolute right-2 top-1/2 -translate-y-1/2 p-3 transition-colors hover:text-accent sm:right-6" aria-label="Foto siguiente">
                 <Icon name="next" size={30} />
               </button>
             </div>
-            <p className="wrap py-6 text-center text-sm text-cal/70">{items[open].alt}</p>
+            <p className="wrap py-6 text-center text-sm text-fg/70">{items[open].alt}</p>
           </motion.div>
         )}
       </AnimatePresence>

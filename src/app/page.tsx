@@ -2,7 +2,7 @@ import Providers from "@/components/Providers";
 import Facilities from "@/components/Facilities";
 import Gallery from "@/components/Gallery";
 import Header from "@/components/Header";
-import Hero from "@/components/Hero";
+import Journey from "@/components/Journey";
 import { Booking, Experience, Footer, Location, Marquee } from "@/components/Sections";
 
 export default function Home() {
@@ -10,7 +10,7 @@ export default function Home() {
     <Providers>
       <Header />
       <main id="contenido">
-        <Hero />
+        <Journey />
         <Experience />
         <Marquee />
         <Facilities />

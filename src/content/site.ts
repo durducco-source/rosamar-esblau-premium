@@ -51,15 +51,17 @@ export const site = {
     { n: "06", label: "Reservas", href: "#reservas", image: "/media/habitacion-doble-sm.jpg" },
   ],
 
-  hero: {
-    kicker: "Adults Only +21 · Lloret de Mar",
-    lead: "Un hotel con encanto solo para adultos, a 100 metros de la playa, en la Costa Brava.",
-    slides: [
-      { src: "/media/piscina-vista-aerea.jpg", alt: "Vista aérea de la piscina exterior del hotel", caption: "Piscina exterior" },
-      { src: "/media/spa-piscina.jpg", alt: "Piscina climatizada del Vitality Spa", caption: "Vitality Spa" },
-      { src: "/media/terraza-bar.jpg", alt: "Terraza exterior del bar", caption: "Terraza" },
-      { src: "/media/habitacion-doble.jpg", alt: "Habitación doble con cama kingsize", caption: "Habitaciones" },
+  // Recorrido de la portada (01 · Home): de la entrada al interior y de vuelta al mar.
+  journey: {
+    intro: { image: { src: "/media/terraza-entrada.jpg", alt: "Terraza de la entrada del Hotel Rosamar Es Blau" }, kicker: "Rosamar Hotels · Lloret de Mar", sub: "Adults only +21 · 4* Superior" },
+    enter: { image: { src: "/media/hall.jpg", alt: "Vestíbulo del hotel" }, title: "Pasa dentro" },
+    stops: [
+      { n: "01", text: "Una piscina abierta al cielo de la Costa Brava.", cta: { label: "Instalaciones", href: "#instalaciones" }, image: { src: "/media/piscina-exterior.jpg", alt: "Piscina exterior con tumbonas" } },
+      { n: "02", text: "Un spa solo para adultos, hecho de calma y agua.", cta: { label: "Vitality Spa", href: "#experiencia" }, image: { src: "/media/spa-piscina.jpg", alt: "Piscina climatizada del Vitality Spa" } },
+      { n: "03", text: "La mesa del Mediterráneo, con producto fresco.", cta: { label: "Gastronomía", href: "#experiencia" }, image: { src: "/media/restaurante.jpg", alt: "Restaurante del hotel" } },
+      { n: "04", text: "Una habitación con terraza, pensada para dos.", cta: { label: "Habitaciones", href: "#habitaciones" }, image: { src: "/media/habitacion-doble.jpg", alt: "Habitación doble con terraza" } },
     ],
+    outro: { image: { src: "/media/piscina-vista-aerea.jpg", alt: "Vista aérea de la piscina del hotel" }, title: "A 100 metros *del mar.*", text: "Un hotel con encanto solo para adultos en Lloret de Mar." },
   },
 
   marquee: ["Mediterráneo", "Adults only +21", "Vitality Spa", "100 m de la playa", "Costa Brava", "4* Superior"],

@@ -42,28 +42,35 @@ export default function Header() {
     };
   }, [open]);
 
-  const light = !solid || open; // texto claro sobre el hero o el menú
 
   return (
     <>
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-[background-color,color,box-shadow] duration-700 ${
-          open ? "text-cal" : solid ? "bg-cal/85 text-ink shadow-[0_1px_0_var(--line)] backdrop-blur-md" : "text-cal"
+          open ? "text-fg" : solid ? "bg-bg/85 text-fg shadow-[0_1px_0_var(--line)] backdrop-blur-md" : "bg-deep/25 text-fg shadow-[0_1px_0_rgba(242,236,226,.08)] backdrop-blur-[3px]"
         }`}
       >
-        <div className="wrap flex h-[72px] items-center justify-between">
+        <div className="wrap flex h-16 items-center justify-between gap-6">
           <a
             href="#inicio"
             onClick={(e) => { if (open) { e.preventDefault(); setOpen(false); goTo("#inicio"); } }}
             className="group flex flex-col leading-none"
             aria-label="Rosamar Es Blau, ir al inicio"
           >
-            <span className={`kicker text-[9px] ${light ? "text-cal/70" : "text-ink/50"}`}>Rosamar</span>
-            <span className="serif text-[26px] tracking-[0.02em]">Es Blau</span>
+            <span className="kicker text-[8px] text-fg/60">Rosamar</span>
+            <span className="mt-1 text-[15px] font-normal uppercase tracking-[0.42em]">Es Blau</span>
           </a>
 
+          <nav aria-label="Secciones" className="hidden lg:block">
+            <ul className="flex items-center gap-8">
+              {site.nav.slice(1).map((item) => (
+                <li key={item.href}><a href={item.href} className="kicker ulink text-fg/80 transition-colors hover:text-fg">{item.label}</a></li>
+              ))}
+            </ul>
+          </nav>
+
           <div className="flex items-center gap-3 sm:gap-6">
-            <a href={site.links.book} target="_blank" rel="noopener" className={`btn hidden sm:inline-flex ${light ? "btn-line" : "btn-mar"}`}>
+            <a href={site.links.book} target="_blank" rel="noopener" className="btn btn-line btn-sm hidden sm:inline-flex">
               Reservar
             </a>
             <button
@@ -73,7 +80,7 @@ export default function Header() {
               aria-expanded={open}
               aria-controls="menu"
               aria-label={open ? "Cerrar menú" : "Abrir menú"}
-              className="group -mr-3 flex min-h-11 min-w-11 items-center justify-center gap-3 px-3"
+              className="group -mr-3 flex min-h-11 lg:hidden min-w-11 items-center justify-center gap-3 px-3"
             >
               <span className="kicker hidden sm:inline" aria-hidden="true">{open ? "Cerrar" : "Menú"}</span>
               <span className="relative block h-3 w-8" aria-hidden="true">
@@ -90,7 +97,7 @@ export default function Header() {
           <motion.nav
             id="menu"
             aria-label="Menú principal"
-            className="on-dark fixed inset-0 z-40 overflow-y-auto bg-mar text-cal"
+            className="on-dark fixed inset-0 z-40 overflow-y-auto bg-deep text-fg"
             initial={{ clipPath: "inset(0% 0% 100% 0%)" }}
             animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
             exit={{ clipPath: "inset(0% 0% 100% 0%)" }}
@@ -99,7 +106,7 @@ export default function Header() {
             <div className="wrap grid min-h-full gap-10 pb-10 pt-28 lg:grid-cols-[1.2fr_1fr] lg:items-center">
               <ul className="flex flex-col">
                 {site.nav.map((item, i) => (
-                  <li key={item.href} className="overflow-hidden border-b border-cal/10">
+                  <li key={item.href} className="overflow-hidden border-b border-fg/10">
                     <motion.a
                       href={item.href}
                       onClick={(e) => { e.preventDefault(); setOpen(false); goTo(item.href); }}
@@ -110,8 +117,8 @@ export default function Header() {
                       animate={{ y: 0 }}
                       transition={{ duration: 0.9, ease: EASE, delay: 0.35 + i * 0.06 }}
                     >
-                      <span className="kicker w-6 text-laton">{item.n}</span>
-                      <span className="serif text-[clamp(40px,7vw,92px)] transition-[transform,color] duration-500 group-hover:translate-x-3 group-hover:italic group-hover:text-laton">
+                      <span className="kicker w-6 text-accent">{item.n}</span>
+                      <span className="serif text-[clamp(40px,7vw,92px)] transition-[transform,color] duration-500 group-hover:translate-x-3 group-hover:text-accent">
                         {item.label}
                       </span>
                     </motion.a>
@@ -135,7 +142,7 @@ export default function Header() {
                   </AnimatePresence>
                 </div>
                 <motion.div
-                  className="grid gap-6 text-sm text-cal/75 sm:grid-cols-2"
+                  className="grid gap-6 text-sm text-fg/75 sm:grid-cols-2"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.8, duration: 0.8 }}
@@ -154,14 +161,14 @@ export default function Header() {
 
       {/* Barra de reserva fija en móvil (aparece tras el hero) */}
       <div
-        className={`fixed inset-x-0 bottom-0 z-30 grid grid-cols-[1fr_auto] border-t border-cal/10 bg-mar text-cal transition-transform duration-700 sm:hidden ${
+        className={`fixed inset-x-0 bottom-0 z-30 grid grid-cols-[1fr_auto] border-t border-fg/10 bg-deep text-fg transition-transform duration-700 sm:hidden ${
           past && !open ? "translate-y-0" : "translate-y-full"
         }`}
       >
         <a href={site.links.book} target="_blank" rel="noopener" className="kicker flex items-center justify-center gap-3 py-4">
           Reservar estancia <Icon name="arrow" />
         </a>
-        <a href={site.links.phone} className="flex items-center border-l border-cal/15 px-5" aria-label={`Llamar al ${site.links.phoneLabel}`}>
+        <a href={site.links.phone} className="flex items-center border-l border-fg/15 px-5" aria-label={`Llamar al ${site.links.phoneLabel}`}>
           <Icon name="phone" size={18} />
         </a>
       </div>

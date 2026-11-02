@@ -3,7 +3,7 @@
 // Primitivas de animación reutilizables (Motion / Framer Motion).
 import { motion, useScroll, useTransform, type MotionValue } from "motion/react";
 import { useRef, type ReactNode } from "react";
-import { asset, EASE } from "@/lib/utils";
+import { asset, EASE, fullRange } from "@/lib/utils";
 
 const VIEW = { once: true, margin: "0px 0px -12% 0px" } as const;
 
@@ -69,7 +69,7 @@ export function ImageReveal({
   return (
     <motion.div
       ref={ref}
-      className={`relative overflow-hidden bg-arena ${className}`}
+      className={`relative overflow-hidden bg-bg2 ${className}`}
       initial={{ clipPath: hidden }}
       whileInView={{ clipPath: "inset(0% 0% 0% 0%)" }}
       viewport={VIEW}
@@ -108,7 +108,7 @@ export function ScrollWords({ text, className = "" }: { text: string; className?
 }
 
 function Word({ children, progress, range }: { children: string; progress: MotionValue<number>; range: [number, number] }) {
-  const opacity = useTransform(progress, range, [0.14, 1]);
+  const opacity = useTransform(progress, ...fullRange(range, [0.14, 1]));
   return (
     <>
       <motion.span style={{ opacity }}>{children}</motion.span>{" "}
@@ -119,9 +119,9 @@ function Word({ children, progress, range }: { children: string; progress: Motio
 /** Etiqueta numerada de sección: "02 — Experiencia". */
 export function SectionLabel({ n, label, dark = false }: { n: string; label: string; dark?: boolean }) {
   return (
-    <Reveal className={`kicker flex items-center gap-4 ${dark ? "text-cal/70" : "text-ink/60"}`}>
-      <span className={dark ? "text-laton" : "text-blau"}>{n}</span>
-      <span className={`h-px w-10 ${dark ? "bg-cal/30" : "bg-ink/25"}`} />
+    <Reveal className={`kicker flex items-center gap-4 ${dark ? "text-fg/70" : "text-fg/60"}`}>
+      <span className={dark ? "text-accent" : "text-accent"}>{n}</span>
+      <span className={`h-px w-10 ${dark ? "bg-fg/30" : "bg-fg/25"}`} />
       <span>{label}</span>
     </Reveal>
   );

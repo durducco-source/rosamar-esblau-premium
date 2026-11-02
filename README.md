@@ -1,8 +1,9 @@
 # Rosamar Es Blau · Web premium
 
 Web inmersiva para el **Hotel Rosamar Es Blau Adults Only +21** (Lloret de Mar, Costa Brava).
-Concepto visual **"Blau — Mediterráneo editorial"**: cal y arena, azul mar profundo y latón, tipografía serif
-editorial, composiciones asimétricas tipo revista y animaciones de nivel agencia. Desarrollo: **DURDUC**.
+Concepto visual basado en el Reel de referencia: **un recorrido cinematográfico continuo controlado por el scroll**
+(de la entrada del hotel al interior, parada a parada, y de vuelta fuera sobre la piscina), tipografía sans muy fina
+y espaciada, luz cálida de atardecer, paradas numeradas con frase corta y botones píldora. Desarrollo: **DURDUC**.
 
 - Web publicada: https://durducco-source.github.io/rosamar-esblau-premium/
 - Código: https://github.com/durducco-source/rosamar-esblau-premium
@@ -34,7 +35,7 @@ src/
 ├── app/                 → layout (SEO, tipografías, JSON-LD), página y estilos (tema en :root)
 ├── components/
 │   ├── Header.tsx       → cabecera, menú a pantalla completa animado y barra de reserva móvil
-│   ├── Hero.tsx         → 01 Home: cortina de entrada, fotos en fundido con zoom lento, titular por letras
+│   ├── Journey.tsx      → 01 Home: recorrido por el hotel ligado al scroll (zoom de cámara + fundidos + paradas)
 │   ├── Sections.tsx     → 02 Experiencia, cinta en movimiento, 05 Ubicación, 06 Reservas, pie
 │   ├── Facilities.tsx   → 03 Instalaciones (índice con vista previa) y habitaciones
 │   ├── Gallery.tsx      → 04 Galería tipo revista con visor
@@ -46,8 +47,9 @@ public/media/            → fotografías oficiales
 
 ## Funcionalidades
 
-- Cortina de entrada, hero a pantalla completa con fotos en fundido, zoom lento, parallax y titular que aparece letra a letra.
+- Portada como recorrido: 7 planos a pantalla completa que avanzan con zoom de cámara y se funden al hacer scroll; título "ES BLAU" enorme y espaciado, "Pasa dentro", paradas 01–04 con botón píldora y cierre "A 100 metros del mar".
 - Menú minimalista a pantalla completa (secciones 01–06) con vista previa de foto al pasar el ratón; Escape para cerrar.
+- Barra de navegación fina con enlaces (escritorio) y menú a pantalla completa (móvil).
 - Manifiesto que se ilumina palabra a palabra con el scroll y titulares que suben desde una máscara.
 - Imágenes que se descubren con cortina (clip-path) y parallax sutil; composición editorial asimétrica.
 - Índice de instalaciones con vista previa fija (escritorio) y acordeón con foto (móvil).
@@ -58,4 +60,4 @@ public/media/            → fotografías oficiales
 ## Fuentes del contenido
 
 - Web oficial **rosamarhotels.com**: textos, servicios, habitaciones, opiniones (9,3 · 1.342 encuestas) y fotografías.
-- No se ha inventado información. La referencia visual (Reel de Instagram) no se pudo analizar: el concepto es propio y se ajustará cuando se disponga del vídeo o capturas.
+- No se ha inventado información. El hotel no dispone de un vídeo de recorrido: el efecto de "vuelo" se recrea con sus fotografías oficiales.
