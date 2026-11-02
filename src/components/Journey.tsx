@@ -27,6 +27,7 @@ export default function Journey() {
         {IMAGES.map((img, i) => (
           <Frame key={img.src} i={i} p={p} src={img.src} alt={img.alt} />
         ))}
+        <div className="pointer-events-none absolute inset-0 bg-deep/25" aria-hidden="true" />
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_90%_at_50%_45%,transparent_40%,rgba(10,9,8,.55)_100%)]" aria-hidden="true" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-deep/85 via-deep/30 to-transparent" aria-hidden="true" />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-deep/60 to-transparent" aria-hidden="true" />
