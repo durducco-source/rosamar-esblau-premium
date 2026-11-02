@@ -1,0 +1,4 @@
+:HL["/rosamar-esblau-premium/_next/static/chunks/0w3kpj-qz6o78.css","style"]
+:HL["/rosamar-esblau-premium/_next/static/media/78eb2d37ccba2007-s.p.2csanl8cs02r-.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+1:[["children",{"s":"__PAGE__","h":160}]]
+0:{"b":"8ic5aBCzR7YutGRVFBLGa","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
